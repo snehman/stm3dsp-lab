@@ -75,7 +75,9 @@ server <- function(input, output, session) {
   # TODO: Create reactiveVal to store the count
   counter <- reactiveVal(0)
   
-  # TODO: Define an observer to update count based on button clicks
+  observeEvent(input$inc, {
+    counter(counter() + 1)
+  })
   
   output$count <- renderText({
     counter()
