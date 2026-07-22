@@ -25,13 +25,6 @@ server <- function(input, output, session) {
   
   # Define an observer to update count based on button clicks
   observeEvent(input$inc, {
-<<<<<<< HEAD
-    count(count() + input$amount)
-  })
-  
-  observeEvent(input$dec, {
-    count(count() - input$amount)
-=======
     count(count() + input$step)
   })
   
@@ -41,7 +34,6 @@ server <- function(input, output, session) {
   
   observeEvent(input$reset, {
     count(0)
->>>>>>> 46c407892dd81f2afbf809a55ee10901b4d72f78
   })
   
   # Render the current count
