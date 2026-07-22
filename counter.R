@@ -9,7 +9,11 @@ ui <- fluidPage(
       actionButton("inc", "Increment"),
       actionButton("dec", "Decrement"),
       actionButton("reset", "Reset"),
-      numericInput("amount", "Amount:", value = 1, min = 1,step = 1)
+      
+      tags$hr(),
+      
+      numericInput("target", "Set count to:", value = 0, min = 0, step = 1),
+      actionButton("set", "Set")
     ),
     
     mainPanel(
@@ -29,11 +33,15 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$dec, {
-    count(count() - input$step)
+    count(max(0, count() - input$step))
   })
   
   observeEvent(input$reset, {
     count(0)
+  })
+  
+  observeEvent(input$set, {
+    count(max(0, input$target))
   })
   
   # Render the current count
@@ -43,7 +51,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
 
 
 
