@@ -5,6 +5,7 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
+      numericInput("step", "Increment/Decrement amount:", value = 1, min = 1, step = 1),
       actionButton("inc", "Increment"),
       actionButton("dec", "Decrement"),
       actionButton("reset", "Reset"),
@@ -24,11 +25,23 @@ server <- function(input, output, session) {
   
   # Define an observer to update count based on button clicks
   observeEvent(input$inc, {
+<<<<<<< HEAD
     count(count() + input$amount)
   })
   
   observeEvent(input$dec, {
     count(count() - input$amount)
+=======
+    count(count() + input$step)
+  })
+  
+  observeEvent(input$dec, {
+    count(count() - input$step)
+  })
+  
+  observeEvent(input$reset, {
+    count(0)
+>>>>>>> 46c407892dd81f2afbf809a55ee10901b4d72f78
   })
   
   # Render the current count
@@ -38,6 +51,8 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+
+x = 12
 
 
 
